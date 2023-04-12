@@ -18,7 +18,7 @@ namespace SistemaCompra.Domain.SolicitacaoCompraAggregate
 
         private Money ObterSubtotal()
         {
-            return new Money(Produto.Preco.Value * Qtde);
+            return new Money(Produto.Preco * Qtde);
         }
 
         private Item() { }

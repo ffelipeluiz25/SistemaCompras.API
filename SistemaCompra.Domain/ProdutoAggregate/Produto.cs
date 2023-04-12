@@ -43,9 +43,9 @@ namespace SistemaCompra.Domain.ProdutoAggregate
         {
             if (Situacao != Situacao.Ativo) throw new BusinessRuleException("Produto deve estar ativo!");
 
-            Preco = new Money(preco);
+            PrecoFormatado = new Money(preco);
 
-            AddEvent(new PrecoAtualizadoEvent(Id, Preco.Value));
+            AddEvent(new PrecoAtualizadoEvent(Id, PrecoFormatado.Value));
         }
     }
 }
