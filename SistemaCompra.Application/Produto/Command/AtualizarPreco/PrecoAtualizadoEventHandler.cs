@@ -1,6 +1,5 @@
 ﻿using MediatR;
 using SistemaCompra.Domain.ProdutoAggregate.Events;
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 

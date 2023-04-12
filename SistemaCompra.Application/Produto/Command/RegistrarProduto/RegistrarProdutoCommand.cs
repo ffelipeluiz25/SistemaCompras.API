@@ -1,6 +1,4 @@
 ﻿using MediatR;
-using System;
-
 namespace SistemaCompra.Application.Produto.Command.RegistrarProduto
 {
     public class RegistrarProdutoCommand : IRequest<bool>

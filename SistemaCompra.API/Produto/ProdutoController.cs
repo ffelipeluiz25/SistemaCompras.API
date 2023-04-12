@@ -4,7 +4,6 @@ using SistemaCompra.Application.Produto.Command.AtualizarPreco;
 using SistemaCompra.Application.Produto.Command.RegistrarProduto;
 using SistemaCompra.Application.Produto.Query.ObterProduto;
 using System;
-
 namespace SistemaCompra.API.Produto
 {
     public class ProdutoController : ControllerBase

@@ -1,9 +1,6 @@
 ﻿using SistemaCompra.Domain.Core.Model;
 using SistemaCompra.Domain.ProdutoAggregate;
 using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace SistemaCompra.Domain.SolicitacaoCompraAggregate
 {
     public class Item : Entity
@@ -21,7 +18,7 @@ namespace SistemaCompra.Domain.SolicitacaoCompraAggregate
 
         private Money ObterSubtotal()
         {
-            return new Money(Produto.Preco.Value * Qtde);
+            return new Money(Produto.Preco * Qtde);
         }
 
         private Item() { }

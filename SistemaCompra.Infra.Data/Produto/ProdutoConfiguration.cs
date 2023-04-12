@@ -8,7 +8,8 @@ namespace SistemaCompra.Infra.Data.Produto
         public void Configure(EntityTypeBuilder<ProdutoAgg.Produto> builder)
         {
             builder.ToTable("Produto");
-            builder.OwnsOne(c => c.Preco, b => b.Property("Value").HasColumnName("Preco")); ;
+            builder.Property(x => x.Preco).HasColumnType("decimal(18,2)").IsRequired().HasColumnName("Preco");
+            builder.OwnsOne(c => c.PrecoFormatado, b => b.Property("Value").HasColumnName("Preco"));
         }
     }
 }

@@ -3,7 +3,6 @@ using MediatR;
 using SistemaCompra.Domain.ProdutoAggregate;
 using System.Threading;
 using System.Threading.Tasks;
-using ProdutoAgg = SistemaCompra.Domain.ProdutoAggregate;
 
 namespace SistemaCompra.Application.Produto.Query.ObterProduto
 {
