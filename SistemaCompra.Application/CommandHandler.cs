@@ -3,7 +3,6 @@ using SistemaCompra.Domain.Core;
 using SistemaCompra.Infra.Data.UoW;
 using System.Collections.Generic;
 using System.Linq;
-
 namespace SistemaCompra.Application
 {
     public abstract class CommandHandler

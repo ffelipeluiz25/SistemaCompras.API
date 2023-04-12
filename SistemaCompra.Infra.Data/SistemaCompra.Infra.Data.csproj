@@ -19,8 +19,4 @@
     <ProjectReference Include="..\SistemaCompra.Domain\SistemaCompra.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="SolicitacaoCompra\" />
-  </ItemGroup>
-
 </Project>

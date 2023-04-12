@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using ProdutoAgg = SistemaCompra.Domain.ProdutoAggregate;
-
 namespace SistemaCompra.Infra.Data.Produto
 {
     public class ProdutoRepository : ProdutoAgg.IProdutoRepository

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Linq;
-
 namespace SistemaCompra.Domain.ProdutoAggregate
 {
     public interface IProdutoRepository

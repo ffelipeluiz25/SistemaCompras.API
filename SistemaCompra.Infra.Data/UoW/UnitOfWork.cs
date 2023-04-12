@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SistemaCompra.Infra.Data.UoW
+﻿namespace SistemaCompra.Infra.Data.UoW
 {
     public class UnitOfWork : IUnitOfWork
     {

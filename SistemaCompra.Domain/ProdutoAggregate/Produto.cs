@@ -2,19 +2,22 @@
 using SistemaCompra.Domain.Core.Model;
 using SistemaCompra.Domain.ProdutoAggregate.Events;
 using System;
-
 namespace SistemaCompra.Domain.ProdutoAggregate
 {
     public class Produto : Entity
     {
+        #region Model
+
         public Categoria Categoria { get; private set; }
-        public Money Preco { get; private set; }
         public string Descricao { get; private set; }
         public string Nome { get; private set; }
-
+        public Money Preco { get; private set; }
         public Situacao Situacao { get; private set; }
 
-        private Produto(){}
+        #endregion
+
+
+        private Produto() { }
 
         public Produto(string nome, string descricao, string categoria, decimal preco)
         {
@@ -22,7 +25,7 @@ namespace SistemaCompra.Domain.ProdutoAggregate
             Nome = nome ?? throw new ArgumentNullException(nameof(nome));
             Descricao = descricao ?? throw new ArgumentNullException(nameof(descricao));
             Preco = new Money(preco);
-            Categoria = (Categoria) Enum.Parse(typeof(Categoria), categoria);
+            Categoria = (Categoria)Enum.Parse(typeof(Categoria), categoria);
             Situacao = Situacao.Ativo;
         }
 
