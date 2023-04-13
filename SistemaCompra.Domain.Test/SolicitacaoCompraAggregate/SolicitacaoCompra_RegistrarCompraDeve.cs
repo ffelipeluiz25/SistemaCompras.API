@@ -14,7 +14,7 @@ namespace SistemaCompra.Domain.Test.SolicitacaoCompraAggregate
             var itens = new List<Item>();
             var produto = new Produto("Cedro", "Transversal 3/3", Categoria.Madeira.ToString(), 1001);
             itens.Add(new Item(produto, 50));
-            var solicitacao = new SolicitacaoCompra("rodrigoasth", "rodrigoasth", 30, itens);
+            var solicitacao = new SolicitacaoCompra("rodrigoasth", "rodrigoasth", 30);
 
             //Quando
             solicitacao.DefinirPrazo30DiasAoComprarMais50mil();
@@ -27,7 +27,7 @@ namespace SistemaCompra.Domain.Test.SolicitacaoCompraAggregate
         public void NotificarErroQuandoNaoInformarItensCompra()
         {
             //Dado
-            var solicitacao = new SolicitacaoCompra("rodrigoasth", "rodrigoasth", 30, new List<Item>());
+            var solicitacao = new SolicitacaoCompra("rodrigoasth", "rodrigoasth", 30);
 
             //Quando 
             var ex = Assert.Throws<BusinessRuleException>(() => solicitacao.NotificarErroQuandoNaoInformarItensCompra());

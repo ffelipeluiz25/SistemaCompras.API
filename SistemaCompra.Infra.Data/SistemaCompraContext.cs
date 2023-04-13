@@ -17,7 +17,7 @@ namespace SistemaCompra.Infra.Data
         {
             modelBuilder.Entity<ProdutoAgg.Produto>();
             modelBuilder.Entity<SolicitacaoCompra>();
-            modelBuilder.Entity<Item>();
+            modelBuilder.Entity<Domain.SolicitacaoCompraAggregate.Item>();
 
             modelBuilder.Ignore<Event>();
             modelBuilder.ApplyConfiguration(new ProdutoConfiguration());

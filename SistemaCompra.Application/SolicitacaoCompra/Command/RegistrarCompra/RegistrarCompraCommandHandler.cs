@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using SistemaCompra.Domain.Core;
+using SistemaCompra.Domain.ItemAggregate;
 using SistemaCompra.Domain.ProdutoAggregate;
 using SistemaCompra.Domain.SolicitacaoCompraAggregate;
 using SistemaCompra.Infra.Data.UoW;
@@ -11,6 +11,7 @@ namespace SistemaCompra.Application.Produto.Command.RegistrarProduto
     {
         private readonly ISolicitacaoCompraRepository _solicitacaoCompraRepository;
         private readonly IProdutoRepository _produtoRepository;
+        private readonly IItemRepository _itemRepository;
 
         public RegistrarCompraCommandHandler(ISolicitacaoCompraRepository solicitacaoCompraRepository, IUnitOfWork uow, IMediator mediator, IProdutoRepository produtoRepository) : base(uow, mediator)
         {
@@ -20,16 +21,15 @@ namespace SistemaCompra.Application.Produto.Command.RegistrarProduto
 
         public Task<bool> Handle(RegistrarCompraCommand request, CancellationToken cancellationToken)
         {
-            if (request.Itens.Count.Equals(0)) throw new BusinessRuleException("Itens não informados");
-            foreach (Item item in request.Itens)
-            {
-                Domain.ProdutoAggregate.Produto produto = _produtoRepository.Obter(item.Produto.Id);
-                if (produto == null) throw new BusinessRuleException("Produto não encontrado");
-                item.Produto = produto;
-            }
+            //Não foi solicitado no teste, mas achei importante validar
+            _itemRepository.ValidaQuantidadeItens(request.Itens);
 
-            var solicitacaoCompra = new SolicitacaoCompra(request.UsuarioSolicitante, request.NomeFornecedor, request.CondicaoPagamento, request.Itens);
+            var solicitacaoCompra = new SolicitacaoCompra(request.UsuarioSolicitante, request.NomeFornecedor, request.CondicaoPagamento);
+            foreach (var item in request.Itens)
+                solicitacaoCompra.AdicionarItem(item.Produto, item.Qtde);
+
             solicitacaoCompra.ValidaSolicitacaoCompra();
+            solicitacaoCompra.CalculaTotalGeral();
             _solicitacaoCompraRepository.RegistrarCompra(solicitacaoCompra);
 
             Commit();

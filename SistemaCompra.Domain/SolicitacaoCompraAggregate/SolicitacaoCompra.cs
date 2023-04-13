@@ -3,7 +3,6 @@ using SistemaCompra.Domain.Core.Model;
 using SistemaCompra.Domain.ProdutoAggregate;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 namespace SistemaCompra.Domain.SolicitacaoCompraAggregate
 {
@@ -23,14 +22,12 @@ namespace SistemaCompra.Domain.SolicitacaoCompraAggregate
 
         private SolicitacaoCompra() { }
 
-        public SolicitacaoCompra(string _usuarioSolicitante, string _nomeFornecedor, int _condicaoPagamento, IList<Item> _itens)
+        public SolicitacaoCompra(string _usuarioSolicitante, string _nomeFornecedor, int _condicaoPagamento)
         {
             Id = Guid.NewGuid();
             UsuarioSolicitante = new UsuarioSolicitante(_usuarioSolicitante);
             NomeFornecedor = new NomeFornecedor(_nomeFornecedor);
             CondicaoPagamento = new CondicaoPagamento(_condicaoPagamento);
-            Itens = _itens;
-            TotalGeral = new Money(_itens.Sum(s => s.Subtotal.Value));
             Data = DateTime.Now;
             Situacao = Situacao.Solicitado;
         }
@@ -38,6 +35,11 @@ namespace SistemaCompra.Domain.SolicitacaoCompraAggregate
         public void AdicionarItem(Produto produto, int qtde)
         {
             Itens.Add(new Item(produto, qtde));
+        }
+
+        public void CalculaTotalGeral()
+        {
+            TotalGeral = new Money(Itens.Sum(s => s.Subtotal.Value));
         }
 
         public void ValidaSolicitacaoCompra()
